@@ -11,7 +11,37 @@
   <body>
     <header class="site-header">
       <div class="container header-grid">
-        <h1 class="site-title">Your Name</h1>
+        <h1 class="site-title">Aadil Kureshy</h1>
+        <a id = 'themeBtn' class="btn">Dark Mode</a>
+          <script>
+            document.addEventListener('DOMContentLoaded', () => {
+              const btn = document.getElementById('themeBtn');
+              let theme = localStorage.getItem('theme') || 'light-mode';
+
+              // Apply theme without clobbering other classes
+              document.body.classList.remove('light-mode', 'dark-mode');
+              document.body.classList.add(theme);
+
+              // If button is present, initialize its label and aria state
+              if (btn) {
+                const setBtnLabel = (t) => {
+                  btn.textContent = t === 'dark-mode' ? 'Light Mode' : 'Dark Mode';
+                  btn.setAttribute('aria-pressed', t === 'dark-mode');
+                };
+
+                setBtnLabel(theme);
+
+                btn.addEventListener('click', () => {
+                  theme = theme === 'light-mode' ? 'dark-mode' : 'light-mode';
+                  document.body.classList.remove('light-mode', 'dark-mode');
+                  document.body.classList.add(theme);
+                  localStorage.setItem('theme', theme);
+                  setBtnLabel(theme);
+                });
+              }
+            });
+          </script>
+          
         <nav class="site-nav">
           <a href="#about">About</a>
           <a href="#projects">Projects</a>
@@ -25,10 +55,11 @@
       <section class="hero">
         <div class="container hero-grid">
           <div class="hero-text">
-            <h2>Hi — I'm a beginner web developer</h2>
+            <h2>Hi — My name is Aadil, and I am a beginner (to hating being a) web developer</h2>
             <p>
-              Use this scaffold to learn HTML and CSS. Edit this page, change styles in
-              <code>styles.css</code>, and try the exercises in the README.
+              I am mostly experienced with Python, and have some experience with modules like TKinter, Flask, and Pygame. 
+              I have some experience in HTML (check my GitHub, it'll force me to code more) and I know like a little of Javascript.
+              I am working on learning Java, it's a work in progress! 
             </p>
             <a class="btn" href="#projects">See my projects</a>
           </div>
@@ -41,7 +72,9 @@
       <section id="about" class="container card">
         <h3>About</h3>
         <p>
-          This is a short about section. Replace this text with your own bio. Tip: keep paragraphs short and use headings to structure content.
+          I am a 16 year old developer in grade 11 attending White Oaks Secondary School. 
+          I mainly work in Python, but am working to learn other languages. I like to read fantasy books
+          and play video games in my free time. Check out my projects below!
         </p>
       </section>
 
@@ -49,16 +82,19 @@
         <h3>Projects</h3>
         <div class="grid">
           <article class="project">
-            <h4>Project One</h4>
-            <p>Short description of a project. Link to a repo or a live demo if you have one.</p>
+            <h4>Grade 11 Puzzle Room Game</h4>
+            <p> Heavily Lord of the Rings inspired puzzle game made in Python using Pygame.</p>
+            <a class="btn" href="https://github.com/Aadil-Kureshy/ICS3U1-Game">Click Here To See</a>
           </article>
           <article class="project">
-            <h4>Project Two</h4>
-            <p>Another project description. Keep this concise and readable.</p>
+            <h4>Weather Website</h4>
+            <p> A website I made using Flask and HTML. Probably one of my first attempts at making a website.</p>
+            <a class="btn" href="https://github.com/Aadil-Kureshy/Weather-Website">Click Here To See</a>
           </article>
           <article class="project">
-            <h4>Project Three</h4>
-            <p>I am very dedicated to Hypixel Bedwars. I probably have over 2000 hours on it and I am at 343 stars.</p>
+            <h4>Grinding Bedwars</h4>
+            <p>I grind Hypixel Bedwars in my free time, despite it probably being dead. I have over 350+ stars and over 2K hours in it!</p>
+            <a class="btn" href="https://plancke.io/hypixel/player/stats/deltqs_">Click Here To See</a>
           </article>
         </div>
       </section>
@@ -66,9 +102,9 @@
       <section id="skills" class="container card">
         <h3>Skills</h3>
         <ul class="skills-list">
-          <li>HTML</li>
-          <li>CSS</li>
-          <li>Responsive design</li>
+          <li>Python</li>
+          <li>Flask</li>
+          <li>TKinter</li>
         </ul>
       </section>
 

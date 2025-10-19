@@ -1,15 +1,21 @@
 /* Beginner-friendly CSS scaffold for a personal website */
 /* Enhanced modern palette and accent colors */
 :root {
-  --bg: #f4f6fc;
+  --bg: #f6fbf6; /* very light green-tinted background */
   --card: #ffffff;
-  --muted: #5a6270;
-  --accent: #3b82f6;
-  --accent-dark: #1e40af;
-  --accent-light: #e0e7ff;
+  --muted: #3f5241; /* muted forest green for text */
+  --accent: #16a34a; /* green-500 (emerald) */
+  --accent-dark: #065f46; /* green-900 (deep emerald) */
+  --accent-light: #ecfdf4; /* very light green */
   --radius: 16px;
   --gap: 1.5rem;
   --shadow: 0 8px 24px rgba(60, 72, 100, 0.10);
+  /* darker palette for text and boxes (avoid pure black) */
+  --text-dark: #0b2b1f; /* near-black but green-tinted */
+  --muted-dark: #254431; /* darker muted text */
+  --box-border: #c7f3dc; /* subtle green border for boxes */
+  --box-shadow: 0 8px 24px rgba(6, 95, 70, 0.10);
+  --header-bg: #dff6e8; /* darker light-mode header/footer background for contrast */
   color-scheme: light;
 }
 *{box-sizing:border-box}
@@ -18,7 +24,7 @@ body {
   margin: 0;
   font-family: 'Segoe UI', system-ui, -apple-system, Roboto, Arial, sans-serif;
   background: var(--bg);
-  color: #1e293b;
+  color: var(--text-dark); /* dark green-ish text */
   line-height: 1.6;
   min-height: 100vh;
 }
@@ -30,9 +36,9 @@ body {
 
 
 .site-header {
-  background: linear-gradient(90deg, #e0e7ffcc, #f1f5f9cc);
+  background: linear-gradient(90deg, color-mix(in srgb, var(--accent-light) 80%, var(--header-bg) 20%) , var(--header-bg));
   backdrop-filter: blur(6px);
-  box-shadow: var(--shadow);
+  box-shadow: var(--box-shadow);
 }
 .header-grid {
   display: flex;
@@ -48,7 +54,7 @@ body {
 }
 .site-nav a {
   margin-left: 1.2rem;
-  color: var(--muted);
+  color: var(--accent-dark);
   text-decoration: none;
   font-weight: 500;
   transition: color 0.2s;
@@ -92,7 +98,7 @@ body {
   height: auto;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--accent-light), #fff);
-  box-shadow: var(--shadow);
+  box-shadow: var(--box-shadow);
   border: 4px solid var(--accent-light);
 }
 .btn {
@@ -104,7 +110,7 @@ body {
   border-radius: 10px;
   text-decoration: none;
   font-weight: 600;
-  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.10);
+  box-shadow: 0 2px 8px rgba(6, 95, 70, 0.08);
   transition: background 0.2s, transform 0.2s;
   border: none;
 }
@@ -115,11 +121,12 @@ body {
 
 
 .card {
-  background: var(--card);
+  background: linear-gradient(180deg, var(--card), var(--bg));
   border-radius: var(--radius);
   padding: 1.2rem 1.5rem;
   margin: 1.2rem auto;
-  box-shadow: var(--shadow);
+  box-shadow: var(--box-shadow);
+  border: 1px solid var(--box-border);
 }
 
 /* Contact form styles: center inputs and make them full-width within a comfortable max-width */
@@ -132,7 +139,7 @@ body {
 }
 .contact-form label {
   align-self: flex-start;
-  color: var(--muted);
+  color: var(--muted-dark);
   font-size: 1rem;
   font-weight: 500;
 }
@@ -142,17 +149,17 @@ body {
   max-width: 640px;
   padding: 0.7rem 0.9rem;
   border-radius: 10px;
-  border: 1px solid #dbeafe;
+  border: 1px solid var(--box-border); /* subtle green tint */
   background: #fff;
   font-size: 1.05rem;
-  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.04);
+  box-shadow: 0 2px 8px rgba(6, 95, 70, 0.03);
   transition: border 0.2s, box-shadow 0.2s;
 }
 .contact-form input:focus,
 .contact-form textarea:focus {
-  outline: 2px solid var(--accent);
+  outline: 2px solid color-mix(in srgb, var(--accent) 72%, black 28%);
   border-color: var(--accent);
-  box-shadow: 0 2px 12px rgba(59, 130, 246, 0.10);
+  box-shadow: 0 2px 12px rgba(6, 95, 70, 0.12);
 }
 .form-actions {
   width: 100%;
@@ -172,13 +179,13 @@ body {
 .project {
   padding: 1.2rem;
   border-radius: 12px;
-  background: linear-gradient(180deg, #fff, #f4f6fc);
-  border: 1px solid #e0e7ff;
-  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.06);
+  background: linear-gradient(180deg, var(--card), var(--bg));
+  border: 1px solid var(--box-border);
+  box-shadow: 0 2px 8px rgba(6, 95, 70, 0.05);
   transition: box-shadow 0.2s, transform 0.2s;
 }
 .project:hover {
-  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.12);
+  box-shadow: 0 8px 24px rgba(6, 95, 70, 0.12);
   transform: translateY(-2px) scale(1.02);
 }
 
@@ -195,19 +202,20 @@ body {
   background: var(--accent-light);
   padding: 0.5rem 0.8rem;
   border-radius: 8px;
-  color: var(--muted);
+  color: var(--muted-dark);
   font-weight: 500;
-  box-shadow: 0 1px 4px rgba(59, 130, 246, 0.04);
+  box-shadow: 0 1px 4px rgba(6, 95, 70, 0.04);
+  border: 1px solid var(--box-border);
 }
 
 
 .site-footer {
   padding: 1.2rem 0;
   text-align: center;
-  color: var(--muted);
+  color: var(--accent-dark);
   font-size: 1rem;
-  background: linear-gradient(90deg, #e0e7ffcc, #f1f5f9cc);
-  box-shadow: var(--shadow);
+  background: linear-gradient(90deg, color-mix(in srgb, var(--accent-light) 80%, var(--header-bg) 20%) , var(--header-bg));
+  box-shadow: var(--box-shadow);
 }
 
 /* Responsive rules for smaller screens */
@@ -234,3 +242,19 @@ body {
 /* Helpful tips for learners */
 /* - Change --accent value to update the primary color globally. */
 /* - Try adding a :root { --accent: #f97316 } line and reload the page. */
+
+/* Dark mode overrides (green-tinted dark theme) */
+body.dark-mode {
+  --bg: #071710; /* very dark green */
+  --card: #0b261f; /* dark card surface */
+  --muted: #98e3c2; /* lighter muted for contrast */
+  --accent: #34d399; /* teal-green accent */
+  --accent-dark: #10b981; /* strong accent for buttons */
+  --accent-light: #083225; /* subtle light in dark */
+  --text-dark: #dffaf0; /* off-white greenish text */
+  --muted-dark: #bfead5;
+  --box-border: rgba(52, 211, 153, 0.12);
+  --box-shadow: 0 8px 24px rgba(2, 40, 30, 0.6);
+  --header-bg: #062819; /* dark header/footer background */
+  color-scheme: dark;
+}
